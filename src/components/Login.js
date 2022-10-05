@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
-
 const Login = () => {
   const { setAuth } = useAuth();
   const [data, setData] = useState(false);
@@ -14,6 +13,8 @@ const Login = () => {
   const errorRef = useRef();
 
   const [user, setUser] = useState("");
+  //const [id, setId] = useState("");
+  //const [fullName, setFullName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   // sets fokus on the user input
@@ -28,6 +29,8 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let id;
+    let fullName;
 
     try {
       fetch(
@@ -39,9 +42,11 @@ const Login = () => {
       // if a match is found user gets added to global context and navigated to the userpage
       data?.map((userDetails) =>
         userDetails.login === user
-          ? (setAuth({ user }),
+          ? ((id = userDetails.id),
+            (fullName = userDetails.name),
+            setAuth({ user, id, fullName }),
             navigate("/userpage"),
-            console.log("it works! " + user))
+            console.log("it works! " +" "+ user +" "+ id +" "+ fullName))
           : ""
       );
       setUser("");
