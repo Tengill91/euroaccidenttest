@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import AuthContext from "../context/AuthProvider";
 import useAuth from "../hooks/useAuth";
@@ -33,6 +33,8 @@ const UserPage = () => {
       .catch(setError);
   }, []);
 
+  // sorting fetched data to get individual information about insurances
+  // sorting should be put in a function 
   useEffect(() => {
     setLoading(true);
     try {
@@ -56,6 +58,7 @@ const UserPage = () => {
     }
   }, [userInsurancesBridge, insurances]);
 
+  //removing user from global context
   const logout = async () => {
     setAuth({});
     navigate("/login");

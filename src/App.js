@@ -24,7 +24,7 @@ function App() {
           <Route path="userpage" element={<UserPage />} />
         </Route>
 
-        {/* missing path */}
+        {/* missing paths */}
         <Route path="*" element={<Missing />} />
       </Route>
     </Routes>
