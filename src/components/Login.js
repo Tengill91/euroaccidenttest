@@ -66,22 +66,21 @@ const Login = () => {
   };
 
   return (
-    <div className=" flex flex-col w-full max-w-md max-h-sm justify-start p-4 rounded-lg bg-white ">
+    <div className=" flex flex-col w-full max-w-md max-h-sm justify-start p-5 rounded-xl drop-shadow-2xl bg-white ">
       <p
         ref={errorRef}
         className={
-          errorMessage ? "bg-red-400 font-bold p-3 mb-4 text-red-800" : "hidden"
+          errorMessage ? "bg-red-400 font-bold  p-3 mb-4 text-red-800" : "hidden"
         }
       >
         {errorMessage}
       </p>
-      <h1>Sign in</h1>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col justify-evenly flex-grow-1 pb-4"
       >
-        <label className="flex justify-start" htmlFor="username">
-          Username
+        <label className="flex mb-2 justify-start" htmlFor="username">
+          <h1 className=" font-semibold  text-slate-600 ">Logga in med ditt användarnamn</h1>
         </label>
         <input
           type="text"
@@ -91,10 +90,10 @@ const Login = () => {
           onChange={(e) => setUser(e.target.value)}
           value={user}
           required
-          className=" text-sm p-1 rounded-lg border-2 border-rose-500"
+          className=" text-sm font-semibold font-mono p-0.5 rounded-md  border-4  border-pink-300  focus:border-pink-400 "
         ></input>
 
-        <button className="mt-4 p-1 rounded-lg bg-pink-600">Sign in</button>
+        <button className="mt-2 py-1.5 px-3 font-mono text-xs text-slate-200  w-fit rounded-full bg-pink-600">Logga in</button>
       </form>
     </div>
   );

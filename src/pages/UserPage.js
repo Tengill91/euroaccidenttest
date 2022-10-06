@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import AuthContext from "../context/AuthProvider";
 import useAuth from "../hooks/useAuth";
@@ -63,16 +63,42 @@ const UserPage = () => {
 
   if (loading) return <h1>Loading...</h1>;
   return (
-    <div className="flex flex-col w-full max-w-md max-h-sm justify-start p-4 rounded-lg bg-white">
-      <h1>UserPage!</h1>
-      <div className="flex flex-col w-full h-40 max-w-md max-h-sm justify-start p-4 rounded-lg bg-gray-300">
+    <div className="flex flex-col w-full h-fit max-h-screen  max-w-md p-5 rounded-lg bg-white ">
+      <div className="flex w-full mb-6 items-baseline justify-between flex-row px-2 my-1 ">
+        <p className=" text-three font-semibold ">{auth.fullName}</p>
+        <button
+          className="  py-1.5 px-3 font-mono text-three text-slate-200  w-fit rounded-full bg-pink-600"
+          onClick={logout}
+        >
+          Logga ut
+        </button>
+      </div>
+
+      <div className="flex flex-col w-full h-fit max-w-md max-h-sm  space-y-1 rounded-lg bg-white max-h-full overflow-auto">
         {console.log(userInsurancesComplete)}
         {userInsurancesComplete?.map((insurance) => (
-          <h1 key={insurance.id}>{insurance.title}</h1>
+          <div className="flex flex-col bg-slate-100 space-y-1 h-fit w-full rounded-md p-4 ">
+            <p className="text-left text-md font-extrabold" key={insurance.id}>
+              {insurance.title}
+            </p>
+            <p className="text-left text-five font-semibold" key={insurance.id}>
+              {insurance.preamble}
+            </p>
+            <p className="text-left text-three" key={insurance.id}>
+              {insurance.body}
+            </p>
+            <div className="flex">
+              <a
+                key={insurance.id}
+                className=" py-1.5 px-3 align-left text-three text-pink-400  w-fit rounded-full bg-white font-bold"
+                href={insurance.url}
+              >
+                {" "}
+                Läs mer
+              </a>
+            </div>
+          </div>
         ))}
-      </div>
-      <div className="flex flex-col p-4 mt-4 bg-slate-500 rounded-md ">
-        <button onClick={logout}>Sign Out</button>
       </div>
     </div>
   );
